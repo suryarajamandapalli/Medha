@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medha | Adaptive Learning Platform</title>
+    <!-- Google Fonts: Figtree -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <img src="logo.png" alt="Medha" height="32">
+                MEDHA
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#methodology">Methodology</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+                </ul>
+                <div class="d-flex gap-2">
+                    <a href="login.html" class="btn btn-outline-dark btn-sm px-4">Log In</a>
+                    <a href="signup.html" class="btn btn-primary btn-sm px-4">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section d-flex align-items-center">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6 reveal active">
+                    <span class="badge bg-primary bg-opacity-10 text-primary mb-3 px-3 py-2 rounded-pill fw-bold"
+                        style="font-size: 0.8rem;">
+                        🚀 The Future of Personal Education
+                    </span>
+                    <h1 class="display-4 fw-bold mb-4">
+                        Learning that adapts to <br>
+                        <span class="text-primary">your unique pace.</span>
+                    </h1>
+                    <p class="lead text-muted mb-5" style="font-size: 1.1rem; max-width: 90%;">
+                        Stop wasting time on what you already know. Medha's AI engine builds a custom curriculum that
+                        evolves in real-time as you learn.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="signup.html" class="btn btn-primary btn-lg px-5">Start Free Trial</a>
+                        <a href="#demo" class="btn btn-outline-dark btn-lg px-4"><i class="bi bi-play-circle me-2"></i>
+                            See How It Works</a>
+                    </div>
+
+                    <div class="mt-5 d-flex align-items-center gap-4 text-muted small fw-medium">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-shield-check text-primary fs-5"></i>
+                            <span>Google Verified</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-people text-primary fs-5"></i>
+                            <span>10k+ Learners</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 position-relative reveal">
+                    <!-- Dashboard Mockup -->
+                    <div class="dashboard-preview">
+                        <!-- Header Mock -->
+                        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-light rounded-circle p-2 border">
+                                    <i class="bi bi-person-fill text-muted"></i>
+                                </div>
+                                <div style="line-height:1.2;">
+                                    <h6 class="mb-0 fw-bold">Alex's Dashboard</h6>
+                                    <small class="text-muted">Today's Focus: Calculus II</small>
+                                </div>
+                            </div>
+                            <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3">On Track</span>
+                        </div>
+
+                        <!-- Content Mock -->
+                        <div class="row g-3">
+                            <div class="col-8">
+                                <div class="p-3 bg-light rounded border mb-3">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <small class="fw-bold text-dark">Current Module Mastery</small>
+                                        <small class="fw-bold text-primary">85%</small>
+                                    </div>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 85%">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 bg-light rounded border">
+                                    <small class="text-muted d-block mb-2">Recommended Next Step</small>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="fw-bold text-dark"><i
+                                                class="bi bi-play-circle-fill text-primary me-2"></i> Derivatives
+                                            Review</span>
+                                        <i class="bi bi-chevron-right text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div
+                                    class="h-100 p-3 bg-dark text-white rounded d-flex flex-column justify-content-center align-items-center text-center">
+                                    <i class="bi bi-fire fs-3 text-warning mb-2"></i>
+                                    <div class="fs-4 fw-bold">12</div>
+                                    <small class="opacity-75">Day Streak</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badges -->
+                    <div class="floating-badge badge-1 animate-float">
+                        <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center"
+                            style="width: 30px; height: 30px;">
+                            <i class="bi bi-check"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold text-dark">Concept Mastered</div>
+                            <div class="text-muted" style="font-size: 0.75rem;">Just now</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Cloud (Social Proof) -->
+    <section class="py-4 border-bottom border-top bg-light">
+        <div class="container">
+            <p class="text-center text-muted small fw-bold mb-4 text-uppercase tracking-wide">Trusted by educators from
+            </p>
+            <div class="row justify-content-center align-items-center opacity-50 grayscale-hover">
+                <div class="col-4 col-md-2 text-center h5 fw-bold text-muted">HARVARD</div>
+                <div class="col-4 col-md-2 text-center h5 fw-bold text-muted">STANFORD</div>
+                <div class="col-4 col-md-2 text-center h5 fw-bold text-muted">MIT</div>
+                <div class="col-4 col-md-2 text-center h5 fw-bold text-muted">COURSERA</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="text-center section-header reveal">
+                <h6 class="text-primary fw-bold text-uppercase mb-2">Core Features</h6>
+                <h2 class="display-5 mb-3">Everything you need to <br>learn effectively.</h2>
+                <p class="mx-auto" style="max-width: 600px;">
+                    We've stripped away the distractions and focused on the science of learning.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Feature 1 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="feature-card">
+                        <div class="feature-icon-box">
+                            <i class="bi bi-cpu-fill"></i>
+                        </div>
+                        <h4 class="h5 mb-3">Adaptive Engine</h4>
+                        <p class="small">
+                            Our algorithms analyze your performance in real-time, adjusting difficulty and content type
+                            to keep you in the "flow state" of learning.
+                        </p>
+                    </div>
+                </div>
+                <!-- Feature 2 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="feature-card">
+                        <div class="feature-icon-box">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <h4 class="h5 mb-3">Granular Analytics</h4>
+                        <p class="small">
+                            Go beyond "Pass/Fail". See detailed breakdowns of your strengths, weaknesses, and retention
+                            rates over time.
+                        </p>
+                    </div>
+                </div>
+                <!-- Feature 3 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="feature-card">
+                        <div class="feature-icon-box">
+                            <i class="bi bi-layers-fill"></i>
+                        </div>
+                        <h4 class="h5 mb-3">Retention Design</h4>
+                        <p class="small">
+                            Built on the principles of Spaced Repetition. We bring back topics right before you're about
+                            to forget them.
+                        </p>
+                    </div>
+                </div>
+                <!-- Feature 4 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="feature-card">
+                        <div class="feature-icon-box">
+                            <i class="bi bi-controller"></i>
+                        </div>
+                        <h4 class="h5 mb-3">Smart Gamification</h4>
+                        <p class="small">
+                            Points, levels, and streaks that actually mean something. Earn rewards for consistency and
+                            mastery, not just clicking.
+                        </p>
+                    </div>
+                </div>
+                <!-- Feature 5 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="feature-card">
+                        <div class="feature-icon-box">
+                            <i class="bi bi-lock-fill"></i>
+                        </div>
+                        <h4 class="h5 mb-3">Privacy First</h4>
+                        <p class="small">
+                            Your learning data is yours. Secure authentication via Google and enterprise-grade
+                            encryption for all user profiles.
+                        </p>
+                    </div>
+                </div>
+                <!-- Feature 6 -->
+                <div class="col-md-6 col-lg-4 reveal">
+                    <div class="feature-card">
+                        <div class="feature-icon-box">
+                            <i class="bi bi-phone-fill"></i>
+                        </div>
+                        <h4 class="h5 mb-3">Device Agnostic</h4>
+                        <p class="small">
+                            Start on your laptop, review on the bus with your phone. Your progress syncs instantly
+                            across all devices.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dark Gamification Section -->
+    <section class="gamification-section">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-5 reveal">
+                    <div
+                        class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill border border-white border-opacity-25 mb-4 text-white text-opacity-75 small">
+                        <span class="bg-warning rounded-circle" style="width: 8px; height: 8px;"></span>
+                        PRO MOTIVATION
+                    </div>
+                    <h2 class="display-5 mb-4">Addictive by Design. <br>Productive by Nature.</h2>
+                    <p class="lead mb-5 opacity-75">
+                        We use game mechanics to trick your brain into loving difficult subjects. Setup goals, join
+                        leagues, and watch your XP grow.
+                    </p>
+
+                    <div class="d-flex flex-column gap-4">
+                        <div class="d-flex gap-4">
+                            <div class="stat-card flex-grow-1 text-center">
+                                <h3 class="fw-bold text-warning mb-0">2.5x</h3>
+                                <small class="text-white-50">Faster Retention</small>
+                            </div>
+                            <div class="stat-card flex-grow-1 text-center">
+                                <h3 class="fw-bold text-info mb-0">85%</h3>
+                                <small class="text-white-50">Daily Active Rate</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1 reveal">
+                    <!-- Visual Representation of Gamification -->
+                    <div class="position-relative">
+                        <div class="bg-dark p-4 rounded-4 border border-white border-opacity-10 shadow-lg">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center text-white fw-bold"
+                                        style="width: 48px; height: 48px;">A</div>
+                                    <div>
+                                        <h5 class="mb-0 text-white">Weekly League</h5>
+                                        <small class="text-white-50">Top 5 advance to Diamond</small>
+                                    </div>
+                                </div>
+                                <span class="badge bg-warning text-dark">Ends in 2d</span>
+                            </div>
+
+                            <!-- List -->
+                            <div class="d-flex flex-column gap-3">
+                                <div
+                                    class="d-flex align-items-center justify-content-between p-3 rounded bg-white bg-opacity-5 border border-white border-opacity-10">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span class="text-warning fw-bold">1</span>
+                                        <span class="text-white">Sarah Jenkins</span>
+                                    </div>
+                                    <span class="text-warning fw-bold">12,450 XP</span>
+                                </div>
+                                <div
+                                    class="d-flex align-items-center justify-content-between p-3 rounded bg-primary bg-opacity-25 border border-primary border-opacity-50">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span class="text-white fw-bold">2</span>
+                                        <span class="text-white">You</span>
+                                    </div>
+                                    <span class="text-white fw-bold">11,200 XP</span>
+                                </div>
+                                <div
+                                    class="d-flex align-items-center justify-content-between p-3 rounded bg-white bg-opacity-5 border border-white border-opacity-10">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <span class="text-white-50 fw-bold">3</span>
+                                        <span class="text-white-50">Marcus Chen</span>
+                                    </div>
+                                    <span class="text-white-50 fw-bold">10,980 XP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container reveal">
+            <div class="cta-box">
+                <div class="position-relative z-2">
+                    <h2 class="display-5 fw-bold mb-4">Ready to start your journey?</h2>
+                    <p class="fs-5 mb-5 opacity-90 mx-auto" style="max-width: 600px;">
+                        Join Medha today and experience the power of personalized, adaptive learning.
+                    </p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="signup.html" class="btn btn-light text-primary btn-lg px-5 fw-bold">Create Free
+                            Account</a>
+                    </div>
+                    <p class="mt-4 small opacity-75">No credit card required • Cancel anytime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <a class="navbar-brand d-flex align-items-center gap-2 mb-4" href="#">
+                        <img src="logo.png" alt="Medha" height="28" style="filter: grayscale(1);">
+                        <span class="text-dark">MEDHA</span>
+                    </a>
+                    <p class="text-muted small mb-4">
+                        Democratizing elite education through adaptive AI. We believe everyone has the potential to
+                        master any subject.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-muted"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="text-muted"><i class="bi bi-linkedin"></i></a>
+                        <a href="#" class="text-muted"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h6 class="footer-heading">Product</h6>
+                    <a href="#" class="footer-link">Changes</a>
+                    <a href="#" class="footer-link">Educators</a>
+                    <a href="#" class="footer-link">Pricing</a>
+                    <a href="#" class="footer-link">Gamification</a>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h6 class="footer-heading">Company</h6>
+                    <a href="#" class="footer-link">About</a>
+                    <a href="#" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Careers</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <h6 class="footer-heading">Weekly Newsletter</h6>
+                    <p class="text-muted small mb-3">Get learning tips and platform updates.</p>
+                    <form class="d-flex gap-2">
+                        <input type="email" class="form-control rounded-pill border-secondary border-opacity-25"
+                            placeholder="email@example.com">
+                        <button class="btn btn-primary rounded-pill px-4">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-top mt-5 pt-4 text-center text-muted small">
+                &copy; 2026 Medha Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

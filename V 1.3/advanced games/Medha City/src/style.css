@@ -1,0 +1,366 @@
+:root {
+    --primary: #00f2ff;
+    --danger: #ff4b2b;
+    --success: #00f260;
+    --bg-dark: #0a0e14;
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text: #e2e8f0;
+    --font-ui: 'Outfit', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text);
+    font-family: var(--font-ui);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+#canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* HUD Layout */
+#hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    grid-template-rows: 80px 1fr 100px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    pointer-events: auto;
+}
+
+/* Header */
+.hud-header {
+    grid-column: 1 / 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+    pointer-events: auto;
+}
+
+.icon-btn:hover {
+    transform: rotate(45deg) scale(1.1);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+}
+
+/* Collapsing Animations */
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: inset 0 0 150px 50px rgba(255, 75, 43, 0);
+    transition: box-shadow 0.5s;
+}
+
+.vignette.critical {
+    box-shadow: inset 0 0 150px 80px rgba(255, 75, 43, 0.4);
+    animation: pulse-red 1s infinite alternate;
+}
+
+@keyframes pulse-red {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
+.glitch {
+    animation: glitch-anim 0.2s infinite;
+}
+
+@keyframes glitch-anim {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Modal System */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    width: 400px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.field label {
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.field input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+    font-family: var(--font-mono);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn-primary {
+    flex: 2;
+    background: var(--primary);
+    color: var(--bg-dark);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.action-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stability-meter-container {
+    width: 200px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.stability-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success), #0575E6);
+    box-shadow: 0 0 15px var(--success);
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Left Sidebar */
+.hud-left {
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 30px;
+}
+
+.metric .label {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+}
+
+.metric .value {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.radar-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Interaction Panel */
+#interaction-panel {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    align-self: center;
+    justify-self: center;
+    width: 500px;
+    padding: 30px;
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.panel-header h2 {
+    font-size: 1.25rem;
+    color: var(--danger);
+}
+
+#close-panel {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#options-grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: rgba(0, 242, 255, 0.1);
+    border-color: var(--primary);
+}
+
+/* Footer */
+.hud-footer {
+    grid-column: 1 / 4;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+}
+
+.terminal-preview {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    display: flex;
+    gap: 15px;
+}
+
+.terminal-preview .prompt {
+    color: var(--primary);
+}
+
+.hidden {
+    display: none !important;
+}

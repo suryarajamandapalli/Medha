@@ -1,0 +1,19 @@
+# Environment variables
+.env
+
+# Python caching & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+ENV/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Gemini/Agent configurations
+.gemini/
+.agents/

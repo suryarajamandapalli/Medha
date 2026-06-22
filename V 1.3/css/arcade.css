@@ -1,0 +1,210 @@
+/* ARCADE GAMES STYLES */
+
+/* --- GENERAL --- */
+.game-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.95);
+    z-index: 2000;
+    display: none;
+    /* Toggled via JS */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.game-container {
+    width: 90%;
+    max-width: 800px;
+    background: transparent;
+}
+
+.game-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.close-game-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.close-game-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- MEMORY MATRIX --- */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 0 auto;
+    perspective: 1000px;
+    max-width: 600px;
+}
+
+@media (max-width: 576px) {
+    .memory-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+}
+
+.memory-card {
+    background: transparent;
+    aspect-ratio: 1;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg);
+}
+
+.memory-front,
+.memory-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.memory-front {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+    font-size: 2rem;
+    transform: rotateY(0deg);
+    /* Face Up initially? No, back is usually seen first */
+}
+
+/* Actually, standard memory game: Front is the "Question/Image", Back is the "Cover". 
+   Let's say .front is the content (hidden initially) and .back is the cover (visible).
+   When flipped, we show front.
+*/
+.memory-card .memory-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.memory-card .front-face {
+    background: white;
+    color: #1e293b;
+    transform: rotateY(180deg);
+    /* Hidden by default */
+    font-size: 0.9rem;
+    border: 2px solid #6366f1;
+}
+
+.memory-card .back-face {
+    background: linear-gradient(135deg, #0f172a, #334155);
+    color: #94a3b8;
+    transform: rotateY(0deg);
+    font-size: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.memory-card.matched .front-face {
+    background: #dcfce7;
+    border-color: #22c55e;
+    color: #15803d;
+}
+
+/* --- RAPID FIRE --- */
+.rapid-timer-container {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.rapid-timer-bar {
+    height: 100%;
+    background: #ef4444;
+    width: 100%;
+    transition: width linear;
+}
+
+.rapid-question {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.rapid-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.rapid-btn {
+    background: white;
+    border: none;
+    padding: 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    color: #1e293b;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.rapid-btn:hover {
+    transform: translateY(-2px);
+    background: #f1f5f9;
+}
+
+.rapid-btn.correct {
+    background: #22c55e;
+    color: white;
+}
+
+.rapid-btn.wrong {
+    background: #ef4444;
+    color: white;
+}
+
+.game-score-display {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fbbf24;
+}

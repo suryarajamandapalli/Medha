@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medha City</title>
+    <link rel="stylesheet" href="src/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Collapsing Overlay -->
+    <div id="vignette" class="vignette hidden"></div>
+
+    <!-- 3D Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Glassmorphism HUD -->
+    <div id="hud">
+        <header class="hud-header glass">
+            <div class="brand">
+                <span class="logo">⚡</span>
+                <h1>MEDHA CITY</h1>
+            </div>
+            <div class="header-right">
+                <div class="system-status">
+                    <span class="label">SYSTEM STABILITY</span>
+                    <div class="stability-meter-container">
+                        <div id="stability-bar" class="stability-bar" style="width: 100%"></div>
+                    </div>
+                    <span id="stability-percent">100%</span>
+                </div>
+            </div>
+        </header>
+
+        <aside class="hud-left glass">
+            <div class="metric">
+                <span class="label">OPTIMIZATION SCORE</span>
+                <span id="opt-score" class="value">0</span>
+            </div>
+            <div class="radar-container">
+                <canvas id="skillRadar"></canvas>
+            </div>
+        </aside>
+
+        <main id="interaction-panel" class="glass hidden">
+            <div class="panel-header">
+                <h2 id="crisis-title">SERVER_RACK_04 FAILURE</h2>
+                <button id="close-panel">×</button>
+            </div>
+            <div class="panel-body">
+                <p id="crisis-desc">Critical coolant leak detected in Rack 04.</p>
+                <div id="options-grid">
+                    <!-- AI Generated Actions -->
+                </div>
+            </div>
+        </main>
+
+        <footer class="hud-footer glass">
+            <div class="terminal-preview">
+                <span class="prompt">></span>
+                <span id="terminal-text">System initialized. Monitoring data center stability...</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/",
+            "./simulationManager.js": "./src/simulationManager.js",
+            "./aiService.js": "./src/aiService.js",
+            "./knowledgeBase.js": "./src/knowledgeBase.js",
+            "./ui/radarChart.js": "./src/ui/radarChart.js",
+            "./config.js": "./src/config.js"
+        }
+    }
+    </script>
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>

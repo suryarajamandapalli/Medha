@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Profile - Medha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-light d-flex align-items-center justify-content-center min-vh-100">
+
+    <div class="col-lg-5 col-md-8 mx-auto">
+        <div class="p-5 bg-white rounded-4 shadow-sm">
+            <div class="text-center mb-5">
+                <img src="logo.png" alt="Medha" height="40" class="mb-3">
+                <h2 class="fw-bold">Tell us about yourself</h2>
+                <p class="text-muted">We need a few details to personalize your learning path.</p>
+            </div>
+
+            <form id="profileForm">
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Full Name</label>
+                    <input type="text" id="profileName" class="form-control py-3 bg-light border-0"
+                        placeholder="What should we call you?" required>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-6">
+                        <label class="form-label small fw-bold text-uppercase text-muted">Age</label>
+                        <input type="number" id="profileAge" class="form-control py-3 bg-light border-0"
+                            placeholder="e.g. 16" required>
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label small fw-bold text-uppercase text-muted">Class / Grade</label>
+                        <select id="profileClass" class="form-select py-3 bg-light border-0" required>
+                            <option value="undergrad" selected>B.Tech CSE</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <label class="form-label small fw-bold text-uppercase text-muted mb-3">Primary Goal</label>
+                    <div class="d-flex flex-wrap gap-2" id="goalTags">
+                        <input type="radio" class="btn-check" name="goal" id="goal1" value="exam_prep"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill btn-sm" for="goal1">Exam Prep</label>
+
+                        <input type="radio" class="btn-check" name="goal" id="goal2" value="skill_building"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill btn-sm" for="goal2">Skill Building</label>
+
+                        <input type="radio" class="btn-check" name="goal" id="goal3" value="homework_help"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary rounded-pill btn-sm" for="goal3">Homework Help</label>
+                    </div>
+                </div>
+                <!-- Learning Pace -->
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-uppercase text-muted">
+                        Preferred Learning Pace
+                    </label>
+                    <select id="learningPace" class="form-select py-3 bg-light border-0" required>
+                        <option value="" selected disabled>Select...</option>
+                        <option value="slow">Slow & Guided</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="fast">Fast & Challenging</option>
+                    </select>
+                </div>
+
+                <!-- Daily Study Time -->
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-uppercase text-muted">
+                        Daily Study Time
+                    </label>
+                    <select id="dailyTime" class="form-select py-3 bg-light border-0" required>
+                        <option value="" selected disabled>Select...</option>
+                        <option value="short">5–10 minutes</option>
+                        <option value="medium">15–30 minutes</option>
+                        <option value="long">30+ minutes</option>
+                    </select>
+                </div>
+
+                <!-- Challenge Preference -->
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-uppercase text-muted">
+                        Challenge Preference
+                    </label>
+                    <select id="challengeStyle" class="form-select py-3 bg-light border-0" required>
+                        <option value="" selected disabled>Select...</option>
+                        <option value="practice">More Practice</option>
+                        <option value="challenge">More Challenges</option>
+                        <option value="balanced">Balanced Mix</option>
+                    </select>
+                </div>
+
+                <!-- Motivation Style -->
+                <div class="mb-5">
+                    <label class="form-label small fw-bold text-uppercase text-muted">
+                        What Motivates You Most?
+                    </label>
+                    <select id="motivationType" class="form-select py-3 bg-light border-0" required>
+                        <option value="" selected disabled>Select...</option>
+                        <option value="levels">Levels & Progress</option>
+                        <option value="scores">Scores & Accuracy</option>
+                        <option value="streaks">Streaks & Rewards</option>
+                    </select>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary w-100 py-3 fw-bold rounded-pill">
+                    Complete Profile <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Logic -->
+    <script type="module" src="js/complete-profile.js"></script>
+</body>
+
+</html>

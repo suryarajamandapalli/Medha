@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medha | Learning Module</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <style>
+        /* Specific Module Styles */
+        .option-card {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .option-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .option-card.selected {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .option-card.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .option-card.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        #progress-bar-container {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        #session-progress {
+            height: 100%;
+            background: var(--primary-gradient);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="dashboard-body">
+
+    <!-- Top Bar -->
+    <nav class="navbar navbar-expand-lg border-bottom border-white border-opacity-10 bg-glass-dark fixed-top">
+        <div class="container-fluid px-4">
+            <a href="dashboard.html"
+                class="btn btn-outline-light btn-sm rounded-pill border-0 d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i> Exit
+            </a>
+
+            <div class="mx-auto text-center">
+                <span
+                    class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25 rounded-pill px-3 py-2"
+                    id="subject-badge">
+                    <i class="bi bi-calculator me-1"></i> Mathematics
+                </span>
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+                <div class="text-end d-none d-md-block">
+                    <div class="small text-muted">Current Session</div>
+                    <div class="fw-bold text-success">+<span id="session-xp">0</span> XP</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Game Area -->
+    <div class="container d-flex flex-column justify-content-center min-vh-100 py-5 mt-4">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+
+                <!-- Progress -->
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between text-muted small mb-2">
+                        <span>Question <span id="current-q">1</span>/<span id="total-q">5</span></span>
+                        <span id="streak-indicator">🔥 Streak: 0</span>
+                    </div>
+                    <div id="progress-bar-container">
+                        <div id="session-progress"></div>
+                    </div>
+                </div>
+
+                <!-- Card -->
+                <div class="card bg-glass border-0 shadow-lg p-4 p-md-5">
+
+                    <!-- Question -->
+                    <div class="mb-4 text-center">
+                        <h3 class="fw-bold mb-3" id="question-text">Loading question...</h3>
+                        <p class="text-white-50 fs-5" id="question-context"></p>
+                    </div>
+
+                    <!-- Options Grid -->
+                    <div class="row g-3" id="options-container">
+                        <!-- Options injected by JS -->
+                    </div>
+
+                    <!-- Feedback / Next -->
+                    <div class="mt-4 pt-4 border-top border-white border-opacity-10 d-none" id="feedback-area">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div id="feedback-message">
+                                <h5 class="fw-bold text-success mb-1"><i class="bi bi-check-circle-fill"></i> Correct!
+                                </h5>
+                                <small class="text-white-50">Well done, keep it up!</small>
+                            </div>
+                            <button class="btn btn-primary btn-lg rounded-pill px-5" id="next-btn">
+                                Next <i class="bi bi-arrow-right ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Celebration Modal (Hidden) -->
+    <div class="modal fade" id="completionModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-gradient-dark border border-white border-opacity-10 text-center p-4">
+                <div class="modal-body">
+                    <div class="display-1 mb-3">🎉</div>
+                    <h2 class="fw-bold text-white mb-2">Module Complete!</h2>
+                    <p class="text-white-50 mb-4">You've mastered this topic.</p>
+
+                    <div class="row g-3 justify-content-center mb-4">
+                        <div class="col-6">
+                            <div class="p-3 bg-white bg-opacity-5 rounded-3 border border-white border-opacity-10">
+                                <div class="small text-muted mb-1">XP Earned</div>
+                                <div class="h3 fw-bold text-warning mb-0" id="final-xp">0</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 bg-white bg-opacity-5 rounded-3 border border-white border-opacity-10">
+                                <div class="small text-muted mb-1">Accuracy</div>
+                                <div class="h3 fw-bold text-info mb-0" id="final-accuracy">0%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="dashboard.html" class="btn btn-primary w-100 rounded-pill py-3 fw-bold">Return to
+                        Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script type="module" src="js/module.js"></script>
+</body>
+
+</html>

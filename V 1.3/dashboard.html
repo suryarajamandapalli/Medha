@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medha | Knowledge Dashboard</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/arcade.css">
+    <style>
+        /* CV Game Overlay */
+        #cv-game-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #webcam-container {
+            position: relative;
+            width: 640px;
+            height: 480px;
+            margin-bottom: 20px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+        }
+
+        #webcam {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1);
+            /* Mirror effect */
+        }
+
+        #output_canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: scaleX(-1);
+            /* Mirror effect to match video */
+        }
+
+        #game-ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            /* Let clicks pass through if needed */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .gesture-hint {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body class="dashboard-body">
+
+    <!-- Mobile Nav Toggle -->
+    <button class="btn btn-dark d-lg-none position-fixed top-0 start-0 m-3 z-3" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#sidebarMenu">
+        <i class="bi bi-list fs-4"></i>
+    </button>
+
+    <div class="container-fluid g-0" >
+        <div class="row g-0">
+            <!-- Sidebar -->
+            <nav id="sidebarMenu" class="col-lg-2 d-lg-block sidebar collapse bg-sidebar">
+                <div class="d-flex flex-column h-100">
+                    <!-- Brand -->
+                    <div class="px-4 py-4 border-bottom border-white border-opacity-10">
+                        <a href="dashboard.html" class="d-flex align-items-center gap-2 text-decoration-none text-white">
+                            <img src="logo.png" alt="Medha" height="28" style="filter: brightness(0) invert(1);">
+                        </a>
+                    </div>
+
+                    <!-- Course Selector -->
+                    <div class="px-3 py-3">
+                        <div class="dropdown w-100">
+                            <button
+                                class="btn btn-dark w-100 d-flex align-items-center justify-content-between p-3 rounded-3 border border-white border-opacity-10"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="d-flex align-items-center gap-2 overflow-hidden">
+                                    <div class="text-start text-truncate">
+                                        <div class="fw-bold small text-white" id="current-course-name">Course</div>
+                                    </div>
+                                </div>
+                                <i class="bi bi-chevron-down small text-white-50"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark w-100 shadow-lg" id="course-dropdown">
+                                <!-- Injected by JS -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <style>
+                        #sidemenu{
+                            scrollbar-width: thin;
+                            scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+                        }
+
+                    </style>
+
+                    <!-- Navigation -->
+                    <div class="flex-grow-1 overflow-y-auto px-3" id="sidemenu">
+                        <p class="text-uppercase text-white-100 extra-small fw-bold px-3 mb-2 mt-2" style="color: #ffffff;">Course Navigation</p>
+                        <ul class="nav flex-column gap-1" id="course-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" data-view="overview">
+                                    <i class="bi bi-grid-1x2"></i> Overview
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-view="chapters">
+                                    <i class="bi bi-list-task"></i> Chapters
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-view="games">
+                                    <i class="bi bi-controller"></i> Practice Games
+                                    <span class="badge bg-warning text-dark ms-auto">XP</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-view="about">
+                                    <i class="bi bi-info-circle"></i> About Course
+                                </a>
+                            </li>
+                        </ul>
+
+                        <p class="text-uppercase text-white-50 extra-small fw-bold px-3 mb-2 mt-4">Personal</p>
+                        <ul class="nav flex-column gap-1">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-view="ai-tutor">
+                                    <i class="bi bi-stars text-warning"></i> AI Tutor
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="bi bi-trophy"></i> Leaderboard
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- User Profile -->
+                    <div class="mt-auto p-3 border-top border-white border-opacity-10 bg-black bg-opacity-25">
+                        <div class="dropdown">
+                            <a href="#"
+                                class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="avatar-placeholder rounded-circle me-2 bg-gradient-primary d-flex align-items-center justify-content-center"
+                                    style="width: 32px; height: 32px;">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <strong id="sidebar-username" class="d-block text-truncate">Student</strong>
+                                    <div class="d-flex align-items-center gap-1 extra-small text-warning">
+                                        <i class="bi bi-lightning-fill"></i> <span id="xp-count">0</span> XP
+                                    </div>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark text-small shadow"
+                                aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-danger" href="#" id="logout-btn">Sign out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-lg-10 ms-sm-auto bg-surface min-vh-100">
+                <!-- Header -->
+                <header
+                    class="py-3 px-4 border-bottom bg-white sticky-top d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold" id="page-title">Course Overview</h5>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="d-none d-md-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-light border">
+                            <i class="bi bi-fire text-danger"></i>
+                            <span class="fw-bold"><span id="streak-count">0</span> Day Streak</span>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="p-4 p-lg-5" id="main-content-area">
+                    <!-- Content injected by JS -->
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- CV Game Overlay -->
+    <div id="cv-game-overlay">
+        <!-- Header -->
+        <div class="d-flex justify-content-between w-100 px-4 py-3 position-absolute top-0 start-0 z-3">
+            <div class="text-white fw-bold d-flex align-items-center gap-2">
+                <span class="badge bg-danger animate-pulse">LIVE</span>
+                <span>Interactive Mode</span>
+            </div>
+            <button class="btn btn-outline-light rounded-pill btn-sm" id="close-cv-game">
+                <i class="bi bi-x-lg"></i> Exit
+            </button>
+        </div>
+
+        <!-- Main Game Area -->
+        <div class="d-flex gap-4 align-items-center w-100 justify-content-center" style="height: 80vh;">
+
+            <!-- Left: Question & Options -->
+            <div class="card bg-glass text-white border-white border-opacity-10 p-4"
+                style="width: 400px; height: 480px;">
+                <div class="d-flex justify-content-between mb-3 text-white-50 small">
+                    <span>Question <span id="cv-q-num">1</span>/<span id="cv-q-total">5</span></span>
+                    <span id="cv-time">00:30</span>
+                </div>
+
+                <h5 class="fw-bold mb-4" id="cv-question-text">Loading...</h5>
+
+                <div class="d-flex flex-column gap-3" id="cv-options-container">
+                    <!-- Options injected via JS -->
+                    <div class="p-3 border border-white border-opacity-25 rounded-3 bg-white bg-opacity-5">
+                        <span class="badge bg-light text-dark me-2">1</span> Option A
+                    </div>
+                </div>
+
+                <div class="mt-auto pt-3 border-top border-white border-opacity-10 text-center">
+                    <small class="text-warning"><i class="bi bi-hand-index-thumb"></i> Show fingers (1-4) to
+                        select</small>
+                </div>
+            </div>
+
+            <!-- Center: Webcam -->
+            <div id="webcam-container">
+                <video id="webcam" autoplay playsinline></video>
+                <canvas id="output_canvas"></canvas>
+
+                <!-- Feedback Overlay -->
+                <div id="cv-feedback-overlay" class="position-absolute top-50 start-50 translate-middle text-center"
+                    style="display: none;">
+                    <i class="bi bi-check-circle-fill text-success display-1 drop-shadow"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Instructions -->
+        <div class="check-cam-status text-white-50 mt-3 d-flex gap-4">
+            <span><i class="bi bi-1-circle"></i> Select Option 1</span>
+            <span><i class="bi bi-2-circle"></i> Select Option 2</span>
+            <span><i class="bi bi-hand-thumbs-up"></i> Confirm Selection</span>
+        </div>
+    </div>
+
+    <!-- Firebase & Custom Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/vision_bundle.js"
+        crossorigin="anonymous"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+
+</html>

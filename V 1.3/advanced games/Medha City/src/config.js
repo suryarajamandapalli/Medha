@@ -1,0 +1,6 @@
+export const CONFIG = {
+    GEMINI_API_KEY: "AIzaSyC_4dtPfRX8t0CvCtkBM6nTMF4PiorNMN0",
+    DEFAULT_LEVEL: 1,
+    STABILITY_DECAY_RATE: 1.2,
+    RECOVERY_BOOST: 20
+};

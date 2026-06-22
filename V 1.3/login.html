@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Medha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Split Screen Specifics (Reused) */
+        .auth-split-screen {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .auth-visual {
+            background-color: var(--secondary-color);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-form-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: var(--bg-body);
+            max-width: 600px;
+        }
+
+        .auth-form-wrapper {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .visual-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 992px) {
+            .auth-visual {
+                display: none;
+            }
+
+            .auth-form-container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-split-screen">
+        <!-- Google Auth is usually enough for both Signup/Login visual consistency -->
+        <div class="auth-visual">
+            <div class="visual-circle" style="width: 500px; height: 500px; bottom: -100px; right: -100px;"></div>
+
+            <div class="position-relative z-2">
+                <a href="index.html" class="d-flex align-items-center gap-2 text-white text-decoration-none mb-5">
+                    <img src="logo.png" alt="Medha" height="42" style="filter: brightness(0) invert(1);">
+                </a>
+
+                <h1 class="display-4 fw-bold mb-4" style="color: white;">Welcome back</h1>
+                <p class="lead opacity-100 mb-5" style="color: white;">
+                    Your adaptive learning journey continues here
+                </p>
+
+                <!-- Stat for Login -->
+
+            </div>
+        </div>
+
+        <div class="auth-form-container">
+            <div class="auth-form-wrapper">
+                <div class="mb-5">
+                    <h2 class="fw-bold mb-2">Log in to your account</h2>
+                    <p class="text-muted">Welcome back!</p>
+                </div>
+
+                <button type="button"
+                    class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center gap-2 mb-4 py-2"
+                    id="googleLoginBtn">
+                    <i class="bi bi-google"></i> Log in with Google
+                </button>
+
+                <div class="text-center text-muted small position-relative mb-4">
+                    <span class="bg-white px-3 position-relative z-1">or log in with email</span>
+                    <hr class="position-absolute w-100 top-50 start-0 z-0 my-0">
+                </div>
+
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-uppercase text-muted">Email</label>
+                        <input type="email" id="loginEmail" class="form-control py-2" placeholder="name@example.com"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-uppercase text-muted">Password</label>
+                        <input type="password" id="loginPassword" class="form-control py-2" required>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-4 small">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label text-muted" for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="text-primary text-decoration-none fw-bold">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-3">Sign In</button>
+                </form>
+
+                <p class="text-center text-muted mt-4 small">
+                    Don't have an account? <a href="signup.html" class="text-primary fw-bold text-decoration-none">Sign
+                        up</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs are now imported inside the module -->
+    <script type="module" src="js/login.js"></script>
+</body>
+
+</html>

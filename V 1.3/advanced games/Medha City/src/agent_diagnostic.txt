@@ -1,0 +1,1 @@
+Diagnostic: Agent can write to this folder.
